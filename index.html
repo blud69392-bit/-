@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>З ДН ЛЬОХА</title>
+  <style>
+    body {
+      background-color: #ffffcc;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .main-box {
+      background-color: white;
+      border: 3px solid black;
+      max-width: 95%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: red;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    p.greeting {
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+      background-color: #e6f2ff;
+      padding: 15px;
+      border: 2px dashed #000;
+      margin: 20px 0;
+    }
+
+    .voice-btn {
+      background-color: #ffcc00;
+      border: 2px solid black;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .voice-btn:active {
+      background-color: #e6b800;
+    }
+
+    .photos {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .photos img {
+      width: 200px;
+      height: auto;
+      border: 2px solid black;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-box">
+    <h1>🎉 З ДНЕМ НАРОДЖЕННЯ, ЛЬОХА! 🎉</h1>
+
+    <p class="greeting" id="text-to-speak">
+      З днем народження тебе, щоб у тебе не було поноса і не здох 🥰🥰🥰
+    </p>
+
+    <button class="voice-btn" onclick="speakText()">🔊 Прослухати ще раз</button>
+
+    <div class="photos">
+      <img src="https://i.postimg.cc/Kvs1VLsB/photo-2026-09-13-10-54-33.jpg" alt="Льоха">
+      <img src="https://i.postimg.cc/c45vjY5t/photo-2026-09-13-10-54-40.jpg" alt="Льоха">
+      <img src="https://i.postimg.cc/X7DrhFDF/photo-2026-09-13-10-54-36.jpg" alt="Льоха">
+      <img src="https://i.postimg.cc/28X1JvXn/photo-2026-09-13-10-54-29.jpg" alt="Льоха">
+      <img src="https://i.postimg.cc/bNFZMbFx/photo-2026-09-13-10-54-25.jpg" alt="Льоха">
+    </div>
+
+    <footer>
+      <p>Коротше, з святом тебе! 🎂🎁</p>
+    </footer>
+  </div>
+
+  <script>
+    function speakText() {
+      speechSynthesis.cancel(); // Скидаємо попередню озвучку, якщо грала
+      const text = document.getElementById('text-to-speak').innerText;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'uk-UA';
+      utterance.rate = 1.0;
+      speechSynthesis.speak(utterance);
+    }
+
+    // Автоматичний запуск при завантаженні сторінки або першому кліку
+    window.addEventListener('DOMContentLoaded', () => {
+      speakText();
+    });
+
+    // Більшість браузерів блокують автозвук без взаємодії, тому додано запуск на будь-який клік по сторінці
+    document.body.addEventListener('click', function startAudioOnFirstClick() {
+      if (!speechSynthesis.speaking) {
+        speakText();
+      }
+      document.body.removeEventListener('click', startAudioOnFirstClick);
+    }, { once: true });
+  </script>
+
+</body>
+</html>
