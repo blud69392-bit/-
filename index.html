@@ -88,11 +88,11 @@
     <button class="voice-btn" onclick="speakText()">🔊 Прослухати ще раз</button>
 
     <div class="photos">
-      <img src="https://i.postimg.cc/Kvs1VLsB/photo-2026-09-13-10-54-33.jpg" alt="Льоха">
-      <img src="https://i.postimg.cc/c45vjY5t/photo-2026-09-13-10-54-40.jpg" alt="Льоха">
-      <img src="https://i.postimg.cc/X7DrhFDF/photo-2026-09-13-10-54-36.jpg" alt="Льоха">
-      <img src="https://i.postimg.cc/28X1JvXn/photo-2026-09-13-10-54-29.jpg" alt="Льоха">
-      <img src="https://i.postimg.cc/bNFZMbFx/photo-2026-09-13-10-54-25.jpg" alt="Льоха">
+      <img src="https://i.imgur.com/8Q9Z5b3.jpeg" alt="Льоха">
+      <img src="https://i.imgur.com/2X8K8M2.jpeg" alt="Льоха">
+      <img src="https://i.imgur.com/W9v1K9J.jpeg" alt="Льоха">
+      <img src="https://i.imgur.com/7L3mR4P.jpeg" alt="Льоха">
+      <img src="https://i.imgur.com/0G1vR8T.jpeg" alt="Льоха">
     </div>
 
     <footer>
@@ -102,7 +102,7 @@
 
   <script>
     function speakText() {
-      speechSynthesis.cancel(); // Скидаємо попередню озвучку, якщо грала
+      speechSynthesis.cancel();
       const text = document.getElementById('text-to-speak').innerText;
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'uk-UA';
@@ -110,12 +110,10 @@
       speechSynthesis.speak(utterance);
     }
 
-    // Автоматичний запуск при завантаженні сторінки або першому кліку
     window.addEventListener('DOMContentLoaded', () => {
       speakText();
     });
 
-    // Більшість браузерів блокують автозвук без взаємодії, тому додано запуск на будь-який клік по сторінці
     document.body.addEventListener('click', function startAudioOnFirstClick() {
       if (!speechSynthesis.speaking) {
         speakText();
